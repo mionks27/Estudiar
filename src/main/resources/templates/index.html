@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Compras Realizadas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+</head>
+<body class="container">
+<h2>Compras Realizadas</h2>
+<a class="btn btn-primary mt-4 mb-4" th:href="@{/nuevo}">Nueva Compra</a>
+<table class="table table-sm">
+    <tr>
+        <th>#</th>
+        <th>Cantidad de Productos</th>
+        <th>Dirección</th>
+        <th>Fecha y hora de la Compra</th>
+        <th>SuperMercado</th>
+        <th>Metodo de Pago</th>
+        <th>ID del Producto</th>
+    </tr>
+    <tr th:each="shipper, info : ${lista}">
+        <td th:text="${info.index + 1}"></td>
+        <td th:text="${shipper.cantidadproducto}"></td>
+        <td th:text="${shipper.direccion}"></td>
+        <td th:text="${shipper.fechadelacompra}"></td>
+        <td th:text="${shipper.mall}"></td>
+        <td th:text="${shipper.metododepago}"></td>
+        <td th:text="${shipper.productoidproducto}"></td>
+        <td><a class="btn btn-primary" th:href="@{'/editar' + '?id=' + ${shipper.idcompra}}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/borrar' + '?id=' + ${shipper.idcompra}}">Borrar</a></td>
+    </tr>
+</table>
+</body>
+</html>
